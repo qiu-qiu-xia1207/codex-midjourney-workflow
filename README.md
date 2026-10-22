@@ -20,7 +20,7 @@
 
 ```text
 $skill-installer 请安装：
-https://github.com/qiu-qiu-xia1207/qiu-qiu-xia1207-codex-skills/tree/main/skills/lovart-mcp-workflow
+https://github.com/qiu-qiu-xia1207/codex-midjourney-workflow/tree/main/skills/lovart-mcp-workflow
 ```
 
 使用Codex内置的skill-installer安装器，下一轮对话即可使用。若技能未出现在可用列表中，再检查安装目录和当前宿主的技能发现状态。不要把整个仓库复制到单个技能目录。

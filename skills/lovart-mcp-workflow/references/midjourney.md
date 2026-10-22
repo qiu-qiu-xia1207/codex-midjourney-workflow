@@ -14,6 +14,8 @@
 
 1. 用 `list_models` 解析用户指定的 Midjourney 路由，再 `describe_model` 读取当前字段。外层 `model` 是 Lovart 路由，`params.model` 才是 Midjourney 版本。
 2. 复用用户指定或已返回的 `project_id`；需要查找历史项目时使用 `list_projects`。不传项目 ID 可能新建项目，不能以此绕过原项目问题。
+
+   `list_projects` 可能把项目展示在卡片中，同时结构化 `projects` 为空且 `total` 大于零。先读工具提示；不要仅凭空数组认定没有项目。已有可靠项目 ID 时继续复用，不重复新建或要求用户重选；没有 ID 时再从实际卡片或其他只读结果定位。
 3. 实际查看参考图，记录来源、必要的裁切关系、Lovart 托管 URL 和用途。已有同一文件的 Lovart URL 可复用；外部 URL 或本地文件经 `upload_asset` 上传，不把本地路径直接当作模型 URL。
 4. `upload_asset` 使用 `filename`、`project_id`，以及 `data_base64` 或 `url` 二选一。遵守当前大小限制；2026-10-22 的 schema 要求本地内容在 8 MB 以内。在工具编排中直接转交 base64，避免打印到聊天或日志。超限时先用合规压缩副本或用户授权的托管方式，不临时公开原件。
 5. `image_url` 用于图像／构图／造型引导，`sref` 用于画风。`oref` 仅在当前 schema 和版本支持时按需使用。画风参考不锁定身份；图像引导也不保证对象数量、位置、文字、五官或四肢准确。无需默认从参考图提取数字风格码。
@@ -55,6 +57,7 @@
 | --- | --- |
 | pending 且有任务 ID | 保存 ID，至少等待 `poll_after_seconds`；需要等待完成或释放并发时使用 `get_task_status`，多个任务合并查询 |
 | 等待超时／返回丢失 | 先核对原任务与日志，不直接重发生成；没有 ID 时记录状态未知并诊断 |
+| 已取得任务 ID，但本地文件写入／解析报错 | 这不是生成失败证据；从已返回响应或已保存日志恢复原 ID，先修复记录，再查询原任务，不重发生图 |
 | completed | 登记全部 artifact ID、URL、格式、实际尺寸和数量，再看图 |
 | failed／moderated／not_found | 保存具体错误与终态，不继续轮询终态，不假装已有产物 |
 
