@@ -1,4 +1,4 @@
 interface:
-  display_name: "Midjourney ��ͼ���Ż�"
-  short_description: "ͨ�� Lovart MCP �� Codex �����ɡ��Ƚϲ������Ż� Midjourney ͼ��"
-  default_prompt: "ʹ�� $lovart-mcp-workflow��ͨ�� Lovart MCP ��� Midjourney ��ͼ���Ż����ȶ�ȡ��ǰ��Ŀ��¼���˶���Ȩ��Χ��"
+  display_name: "Midjourney 生图与优化"
+  short_description: "通过 Lovart MCP 在 Codex 中生成、比较并迭代优化 Midjourney 图像"
+  default_prompt: "使用 $lovart-mcp-workflow，通过 Lovart MCP 完成 Midjourney 生图或优化；先读取当前项目记录并核对授权范围。"
