@@ -1,0 +1,4 @@
+interface:
+  display_name: "Midjourney ��ͼ���Ż�"
+  short_description: "ͨ�� Lovart MCP �� Codex �����ɡ��Ƚϲ������Ż� Midjourney ͼ��"
+  default_prompt: "ʹ�� $lovart-mcp-workflow��ͨ�� Lovart MCP ��� Midjourney ��ͼ���Ż����ȶ�ȡ��ǰ��Ŀ��¼���˶���Ȩ��Χ��"
